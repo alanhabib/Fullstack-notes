@@ -61,7 +61,6 @@ const IconWrapper = styled.div`
 
 const IncomeExpenses = () => {
   const { expenses } = useContext(AppContext);
-  console.log("DESCRIPTION LENGTH: ", expenses.length);
   const sumAmount = expenses?.reduce((total, item) => {
     return (total += item.amount);
   }, 0);
@@ -77,7 +76,7 @@ const IncomeExpenses = () => {
 
       <DescriptionWrapper>
         <div>
-          <Text>Descriptions: {expenses.length}</Text>
+          <Text>Expenses: {expenses.length}</Text>
         </div>
         <div>
           <Text>Amount: {sumAmount}</Text>

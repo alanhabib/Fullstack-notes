@@ -31,7 +31,6 @@ exports.addExpense = (req, res) => {
 };
 
 // If i would've implemented update I would do something like down below
-
 exports.updateExpense = (req, res) => {
   try {
     const { id, expense, amount } = req.body;
