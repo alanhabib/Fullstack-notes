@@ -46,7 +46,6 @@ export const AppProvider = ({ children }) => {
   const addExpense = async (expense) => {
     try {
       await axios.post("http://localhost:8080/api/insert", expense);
-
       dispatch({
         type: "ADD_EXPENSE",
         payload: expense,

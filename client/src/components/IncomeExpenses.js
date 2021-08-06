@@ -8,13 +8,13 @@ const Text = styled.h4`
 `;
 
 const DescriptionWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
   background-color: #fff;
   box-shadow: var(--box-shadow);
   padding: 20px;
-  display: flex;
-  justify-content: space-between;
   margin: 20px 0;
-
+  border-radius: 8px;
   & > div {
     flex: 1;
     text-align: center;
@@ -61,6 +61,7 @@ const IconWrapper = styled.div`
 
 const IncomeExpenses = () => {
   const { expenses } = useContext(AppContext);
+  console.log("DESCRIPTION LENGTH: ", expenses.length);
   const sumAmount = expenses?.reduce((total, item) => {
     return (total += item.amount);
   }, 0);
@@ -76,7 +77,7 @@ const IncomeExpenses = () => {
 
       <DescriptionWrapper>
         <div>
-          <Text>Description</Text>
+          <Text>Descriptions: {expenses.length}</Text>
         </div>
         <div>
           <Text>Amount: {sumAmount}</Text>

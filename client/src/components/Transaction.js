@@ -39,6 +39,7 @@ const Text = styled.div`
   font-size: 18px;
   font-weight: 700;
   padding: 0 8px;
+  color: #20c997;
 `;
 
 const ButtonWrapper = styled.div`
