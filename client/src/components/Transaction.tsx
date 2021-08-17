@@ -2,6 +2,8 @@ import React, { useContext } from "react";
 import { AppContext } from "../context/AppContext";
 import { MdDelete } from "react-icons/md";
 import styled from "styled-components";
+import axios from "axios";
+import { IExpenseItem } from "../context/interface";
 
 const Remove = styled.div`
   opacity: 0;
@@ -47,12 +49,20 @@ const ButtonWrapper = styled.div`
   flex-direction: row;
 `;
 
-const Transaction = (props) => {
-  const { deleteExpense } = useContext(AppContext);
+const Transaction = (props: IExpenseItem) => {
+  const { dispatch } = useContext(AppContext);
+
+  const deleteExpense = async (id: any) => {
+    await axios.delete(`http://localhost:8080/api/delete/${id}`);
+    dispatch({
+      type: "DELETE",
+      payload: id,
+    });
+  };
 
   return (
     <ToDoItemBlock>
-      <Text>{props.text}</Text>
+      <Text>{props.expense}</Text>
       <ButtonWrapper>
         <Text>{props.amount}</Text>
         <Remove

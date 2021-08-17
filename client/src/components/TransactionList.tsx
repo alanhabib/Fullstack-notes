@@ -2,9 +2,18 @@ import React, { useContext, useEffect } from "react";
 import { AppContext } from "../context/AppContext";
 import Transaction from "./Transaction";
 import styled from "styled-components";
+import axios from "axios";
 
 const TransactionList = () => {
-  const { getExpenses, expenses } = useContext(AppContext);
+  const { state, dispatch } = useContext(AppContext);
+
+  const getExpenses = async () => {
+    const res = await axios.get("http://localhost:8080/api/get");
+    dispatch({
+      type: "GET",
+      payload: res.data.data,
+    });
+  };
 
   useEffect(() => {
     getExpenses();
@@ -27,12 +36,12 @@ const TransactionList = () => {
 
   return (
     <ExpenseList>
-      {Array.isArray(expenses) && expenses.length ? (
-        expenses?.map((expense) => (
+      {Array.isArray(state.expenses) && state.expenses.length ? (
+        state.expenses?.map((expense) => (
           <Transaction
             key={expense?.id}
             id={expense?.id}
-            text={expense?.expense}
+            expense={expense?.expense}
             amount={expense?.amount}
           />
         ))

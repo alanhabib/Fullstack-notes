@@ -1,7 +1,9 @@
-import { useState, useContext } from "react";
+import React, { useState, useContext, FormEvent } from "react";
 import { AppContext } from "../context/AppContext";
 import styled from "styled-components";
 import { MdAdd } from "react-icons/md";
+import { IExpenseAction, IExpenseItem } from "../context/interface";
+import axios from "axios";
 
 const CircleButton = styled.button`
   background: #38d9a9;
@@ -71,9 +73,23 @@ const AddExpense = () => {
   const [expense, setExpense] = useState("");
   const [amount, setAmount] = useState("");
 
-  const { addExpense } = useContext(AppContext);
+  const { dispatch } = useContext(AppContext);
 
-  const onSubmit = (event) => {
+  const addExpense = async (expense: IExpenseItem) => {
+    await axios.post("http://localhost:8080/api/insert", expense);
+    dispatch({
+      type: "ADD",
+      payload: expense,
+    });
+
+    const res = await axios.get("http://localhost:8080/api/get");
+    dispatch({
+      type: "GET",
+      payload: res.data.data,
+    });
+  };
+
+  const onSubmit = (event: React.SyntheticEvent): void => {
     event.preventDefault();
     if (!expense || !amount) {
       return;
@@ -82,7 +98,6 @@ const AddExpense = () => {
       expense,
       amount: parseInt(amount),
     };
-
     addExpense(newExpense);
     setExpense("");
     setAmount("");

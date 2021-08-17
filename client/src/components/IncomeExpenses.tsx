@@ -60,15 +60,15 @@ const IconWrapper = styled.div`
 `;
 
 const IncomeExpenses = () => {
-  const { expenses } = useContext(AppContext);
-  const sumAmount = expenses?.reduce((total, item) => {
+  const { state } = useContext(AppContext);
+  const sumAmount = state.expenses?.reduce((total, item) => {
     return (total += item.amount);
   }, 0);
 
   return (
     <>
       <TitleContainer>
-        <Title>Welcome! </Title>
+        <Title>Welcome!</Title>
         <IconWrapper>
           <FaReact />
         </IconWrapper>
@@ -76,7 +76,7 @@ const IncomeExpenses = () => {
 
       <DescriptionWrapper>
         <div>
-          <Text>Expenses: {expenses.length}</Text>
+          <Text>Expenses: {state.expenses.length}</Text>
         </div>
         <div>
           <Text>Amount: {sumAmount}</Text>

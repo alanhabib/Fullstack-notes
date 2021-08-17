@@ -6,8 +6,14 @@ export const GlobalStyle = createGlobalStyle`
   --box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
 
-* {
-  box-sizing: border-box;
+
+
+
+*{
+        margin: 0;
+        padding: 0;
+        outline:0;
+        box-sizing:border-box;
 }
 
 body {
