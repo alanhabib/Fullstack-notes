@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useCallback, useContext } from "react";
 import { AppContext } from "../context/AppContext";
 import { MdDelete } from "react-icons/md";
 import styled from "styled-components";
@@ -49,8 +49,8 @@ const ButtonWrapper = styled.div`
   flex-direction: row;
 `;
 
-const Transaction = (props: IExpenseItem) => {
-  const { dispatch } = useContext(AppContext);
+const Transaction = ({ id, expense, amount }: IExpenseItem) => {
+  const { dispatch, state } = useContext(AppContext);
 
   const deleteExpense = async (id: any) => {
     await axios.delete(`http://localhost:8080/api/delete/${id}`);
@@ -60,14 +60,26 @@ const Transaction = (props: IExpenseItem) => {
     });
   };
 
+  const edit = useCallback(
+    (bool: boolean, id: any) => {
+      const edited = { bool, id };
+
+      dispatch({
+        type: "EDITING",
+        payload: edited,
+      });
+    },
+    [id]
+  );
+
   return (
-    <ToDoItemBlock>
-      <Text>{props.expense}</Text>
+    <ToDoItemBlock onClick={() => edit(true, id)}>
+      <Text>{expense}</Text>
       <ButtonWrapper>
-        <Text>{props.amount}</Text>
+        <Text>{amount}</Text>
         <Remove
           onClick={() => {
-            deleteExpense(props.id);
+            deleteExpense(id);
           }}
         >
           <MdDelete />

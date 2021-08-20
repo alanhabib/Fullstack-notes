@@ -1,26 +1,20 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
+    "target": "es5", // Which version of ECMAScript should the code be compiled down to? In this case, the target is ES5 for older browser support.
+    "lib": ["dom", "dom.iterable", "esnext"], // Which high-level library files should be included during compilation?
+    "allowJs": true, // Can JavaScript files be imported in any of the project files? In this case, they should be.
+    "skipLibCheck": true, // Should type checking be skipped in declaration files
+    "esModuleInterop": true, //  In this context, should --
+    "allowSyntheticDefaultImports": true, // Can modules with no default export be imported using the default import syntax of import x from "x"? In this case, they should be. Instead of...typescriptimport * as React from "react";An import is written like:typescript import React from "react";
     "strict": true,
-    "forceConsistentCasingInFileNames": true,
+    "forceConsistentCasingInFileNames": true, // Should filenames follow the same casing conventions? In this case, they should.
     "noFallthroughCasesInSwitch": true,
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true,
+    "noEmit": true, //  Should outputs not be emitted? In this case, do not emit outputs.
     "jsx": "react-jsx"
   },
-  "include": [
-    "src"
-  ]
+  "include": ["src"] // Specify the directories/files to be included for compilation. In this case, all the files in the src directory should be included.
 }

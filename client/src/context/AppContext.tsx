@@ -4,6 +4,7 @@ import Reducer from "./Reducer";
 
 const initialState: IExpenseState = {
   expenses: [],
+  editing: { id: "", bool: false },
 };
 
 export const AppContext = createContext({} as IContextModel);

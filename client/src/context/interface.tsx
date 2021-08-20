@@ -6,8 +6,14 @@ export interface IExpenseItem {
   amount: number;
 }
 
+export interface IEditItem {
+  id: string;
+  bool: boolean;
+}
+
 export interface IExpenseState {
   expenses: IExpenseItem[];
+  editing: IEditItem;
 }
 
 export interface IContextModel {
@@ -18,4 +24,6 @@ export interface IContextModel {
 export type IExpenseAction =
   | { type: "ADD"; payload: IExpenseItem }
   | { type: "DELETE"; payload: string }
-  | { type: "GET"; payload: IExpenseItem[] };
+  | { type: "GET"; payload: IExpenseItem[] }
+  | { type: "EDITING"; payload: IEditItem }
+  | { type: "UPDATE"; payload: IExpenseItem };

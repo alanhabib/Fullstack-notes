@@ -19,7 +19,25 @@ export default (
     case "DELETE":
       return {
         ...state,
-        expenses: state.expenses.filter((item) => item.id !== action.payload),
+        expenses: state.expenses.filter(({ id }) => id !== action.payload),
+      };
+
+    case "EDITING":
+      return {
+        ...state,
+        editing: action.payload,
+      };
+
+    case "UPDATE":
+      const newExpense = state.expenses.map((expense) => {
+        if (expense.id === action.payload.id) {
+          return action.payload;
+        }
+        return expense;
+      });
+      return {
+        ...state,
+        expenses: newExpense,
       };
 
     default:

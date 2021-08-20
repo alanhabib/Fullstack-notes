@@ -14,3 +14,8 @@ export const getExpenses = (todo: IExpenseItem[]): IExpenseAction => ({
   type: "GET",
   payload: todo,
 });
+
+export const updateExpense = (todo: IExpenseItem): IExpenseAction => ({
+  type: "UPDATE",
+  payload: todo,
+});

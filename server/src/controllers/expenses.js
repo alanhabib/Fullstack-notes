@@ -38,6 +38,9 @@ exports.updateExpense = (req, res) => {
       "UPDATE expenses SET expense = ?, amount = ? WHERE id = ?";
     db.query(sqlUpdate, [expense, amount, id], (err, result) => {
       if (err) console.log(err);
+      res.status(200).json({
+        success: true,
+      });
     });
   } catch (err) {
     if (err.name === "ValidationError") {
